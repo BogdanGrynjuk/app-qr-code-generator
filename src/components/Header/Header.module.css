@@ -1,0 +1,16 @@
+.header {
+  font-family: 'MuseoModerno', system-ui;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: inline-block;
+  text-align: center;
+  font-size: 4em;
+  font-weight: bold;
+  line-height: 1em;
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 0.5em;
+}

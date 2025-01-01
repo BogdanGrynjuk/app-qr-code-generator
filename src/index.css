@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200;500;700&display=swap');
+
+/* Скидання стилів та базові налаштування */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  box-shadow: none; /* Видалення стандартних тіней */
+}
+
+html {
+  font-size: 16px; /* Базовий розмір шрифта для зручного використання rem */
+  font-family: 'Poppins', Arial, sans-serif; /* Фолбек для шрифтів */
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #010824;
+  background-image: linear-gradient(
+      to right,
+      transparent 0 49px,
+      #eeeeee11 49px
+    ),
+    linear-gradient(to bottom, transparent 0 49px, #eeeeee11 49px);
+  background-size: 50px 50px;
+  background-attachment: fixed;
+  color: #eeeeee;
+  font-size: 15px;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  content: '';
+  background-image: linear-gradient(to right, #d02e23, #7a43b6);
+  z-index: -1;
+  top: -200px;
+  left: calc(50% - 200px);
+  border-radius: 50% 50% 0% 0%;
+  pointer-events: none;
+  filter: blur(250px);
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+a,
+button {
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+button:focus {
+  outline: 2px solid #d02e23;
+  outline-offset: 2px;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-contrast: high) {
+  body {
+    background-color: #000000;
+    color: #ffffff;
+  }
+}
