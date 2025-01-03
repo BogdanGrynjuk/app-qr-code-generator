@@ -1,0 +1,11 @@
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+}
+
+.icon {
+  object-fit: cover;
+}
