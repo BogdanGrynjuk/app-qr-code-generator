@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200;500;700&display=swap');
 
-/* Скидання стилів та базові налаштування */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  box-shadow: none; /* Видалення стандартних тіней */
+  box-shadow: none;
 }
 
 html {
-  font-size: 16px; /* Базовий розмір шрифта для зручного використання rem */
-  font-family: 'Poppins', Arial, sans-serif; /* Фолбек для шрифтів */
+  font-size: 16px;
+  font-family: 'Poppins', Arial, sans-serif;
   height: 100%;
   width: 100%;
 }
@@ -35,20 +34,6 @@ body {
   color: #eeeeee;
   font-size: 15px;
   font-family: 'Poppins', Arial, sans-serif;
-}
-
-body::before {
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  content: '';
-  background-image: linear-gradient(to right, #d02e23, #7a43b6);
-  z-index: -1;
-  top: -200px;
-  left: calc(50% - 200px);
-  border-radius: 50% 50% 0% 0%;
-  pointer-events: none;
-  filter: blur(250px);
 }
 
 ul,
