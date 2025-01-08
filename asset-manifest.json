@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/app-qr-code-generator/static/css/main.0dbc1add.css",
-    "main.js": "/app-qr-code-generator/static/js/main.1f23b9ae.js",
+    "main.css": "/app-qr-code-generator/static/css/main.dc797b4f.css",
+    "main.js": "/app-qr-code-generator/static/js/main.6ea71161.js",
     "static/media/github_icon.svg": "/app-qr-code-generator/static/media/github_icon.f582ee5e1ccfcc1da2b64a559b7748af.svg",
     "index.html": "/app-qr-code-generator/index.html",
     "static/media/linkedin_icon.svg": "/app-qr-code-generator/static/media/linkedin_icon.b41a1faa82fc75a5bf5583f48ad0f654.svg",
     "static/media/telegram_icon.svg": "/app-qr-code-generator/static/media/telegram_icon.a88bddc8ce0d793b5f974184ddcdc870.svg",
-    "main.0dbc1add.css.map": "/app-qr-code-generator/static/css/main.0dbc1add.css.map",
-    "main.1f23b9ae.js.map": "/app-qr-code-generator/static/js/main.1f23b9ae.js.map"
+    "main.dc797b4f.css.map": "/app-qr-code-generator/static/css/main.dc797b4f.css.map",
+    "main.6ea71161.js.map": "/app-qr-code-generator/static/js/main.6ea71161.js.map"
   },
   "entrypoints": [
-    "static/css/main.0dbc1add.css",
-    "static/js/main.1f23b9ae.js"
+    "static/css/main.dc797b4f.css",
+    "static/js/main.6ea71161.js"
   ]
 }
