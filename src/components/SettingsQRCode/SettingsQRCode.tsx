@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 
 import css from './SettingsQRCode.module.css';
+import { prepareParameters, getQrCode, QRCodeParams } from 'utils/qrCodeUtils';
 
-const SettingsQRCode: React.FC = () => {
-  interface Data {
-    data: string;
-    fgColor: string;
-    bgColor: string;
-    size: string;
-    border: string;
-  }
+interface Props {
+  setUrlQrCode: (url: string) => void;
+}
 
-  const [formData, setFormData] = useState<Data>({
+const SettingsQRCode: React.FC<Props> = ({ setUrlQrCode }) => {
+  const [formData, setFormData] = useState<QRCodeParams>({
     data: '',
     fgColor: '#000000',
     bgColor: '#ffffff',
@@ -22,35 +19,6 @@ const SettingsQRCode: React.FC = () => {
   const isDisabled = !formData.data;
   const counter = formData.data.length;
 
-  const prepareParameters = (params: Data) => {
-    const prepared = {
-      data: params.data,
-      size: `${params.size}x${params.size}`,
-      color: params.fgColor.replace('#', ''),
-      bgcolor: params.bgColor.replace('#', ''),
-      qzone: params.border,
-    };
-
-    return prepared;
-  };
-
-  const getQrCode = async (parameters: Record<string, string>) => {
-    const baseUrl = 'https://api.qrserver.com/v1/create-qr-code/';
-    const urlParams = new URLSearchParams(parameters).toString();
-    const fullUrl = `${baseUrl}?${urlParams}`;
-
-    try {
-      const response = await fetch(fullUrl);
-      if (response.status === 200) {
-        console.log(fullUrl);
-      } else {
-        console.error('Не вдалося згенерувати QR-код');
-      }
-    } catch (error) {
-      console.error('Помилка:', error);
-    }
-  };
-
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
@@ -59,9 +27,20 @@ const SettingsQRCode: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    getQrCode(prepareParameters(formData));
+    try {
+      const params = prepareParameters(formData);
+      const url = await getQrCode(params);
+      if (url) {
+        setUrlQrCode(url);
+      } else {
+        alert('Something went wrong');
+        return null;
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

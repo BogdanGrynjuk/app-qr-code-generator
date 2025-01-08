@@ -4,8 +4,8 @@
   border-radius: 1em;
   padding: clamp(1em, 2vw, 2em);
   width: clamp(300px, 80%, 600px);
-  /* height: 700px;
-  min-height: max-content; */
+  height: 700px;
+  /* min-height: max-content; */
   transition: all 1s ease;
   backface-visibility: hidden;
   box-shadow: 0px 0px 3em 2em #e945e333;
