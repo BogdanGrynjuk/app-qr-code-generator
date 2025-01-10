@@ -5,13 +5,19 @@ import { downloadQRCode } from 'utils/qrCodeUtils';
 
 interface Props {
   urlQrCode: string;
+  isFlipped: boolean;
+  setIsFlipped: () => void;
 }
 
-const DisplayQRCode: React.FC<Props> = ({ urlQrCode }) => {
+const DisplayQRCode: React.FC<Props> = ({
+  urlQrCode,
+  isFlipped,
+  setIsFlipped,
+}) => {
   const formats = ['svg', 'gif', 'png', 'eps', 'jpeg'];
 
   return (
-    <section className={css.container}>
+    <section className={`${css.container} ${isFlipped && css['is-flipped']}`}>
       <header className={css.header}>
         <h2 className={css.header__title}>Your QR code is ready!</h2>
         <h3 className={css['header__sub-title']}>
@@ -37,7 +43,7 @@ const DisplayQRCode: React.FC<Props> = ({ urlQrCode }) => {
           ))}
         </ul>
       </div>
-      <button type="button" className={css.cta}>
+      <button type="button" className={css.cta} onClick={setIsFlipped}>
         <span>Go back</span>
       </button>
     </section>

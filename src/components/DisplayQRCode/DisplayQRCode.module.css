@@ -1,14 +1,25 @@
 .container {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 1.5em;
+  transform: translate(-50%, -50%) rotateY(180deg);
   background-color: #020c3659;
   border-radius: 1em;
   padding: clamp(1em, 2vw, 2em);
   width: clamp(300px, 80%, 600px);
   height: 700px;
-  /* min-height: max-content; */
-  transition: all 1s ease;
+  display: flex;
+
+  transition: transform 1s ease;
   backface-visibility: hidden;
   box-shadow: 0px 0px 3em 2em #e945e333;
+}
+
+.is-flipped {
+  transform: translate(-50%, -50%) rotateY(360deg);
 }
 
 .header {
@@ -18,7 +29,6 @@
   justify-content: center;
   row-gap: 0.2em;
   text-align: center;
-  margin-bottom: 2em;
 
   & > .header__title {
     font-size: clamp(1.25em, 2vw, 2.25em);
@@ -35,7 +45,7 @@
 }
 
 .image-wrapper {
-  width: 70%;
+  width: 65%;
   margin: 0 auto;
   box-shadow: 0px 0px 0.5em 0.5em #e945e333;
 
@@ -72,6 +82,7 @@
 }
 
 .cta {
+  min-width: 200px;
   align-self: center;
   font-size: clamp(1em, 2vw, 1.25em);
   line-height: 1.5;

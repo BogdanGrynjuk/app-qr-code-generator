@@ -6,11 +6,25 @@ import DisplayQRCode from 'components/DisplayQRCode';
 
 const Main: React.FC = () => {
   const [urlQrCode, setUrlQrCode] = useState<string>('');
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+
+  const toggleIsFlipped = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   return (
     <main className={css.main}>
-      <SettingsQRCode setUrlQrCode={setUrlQrCode} />
-      {urlQrCode && <DisplayQRCode urlQrCode={urlQrCode} />}
+      <SettingsQRCode
+        setUrlQrCode={setUrlQrCode}
+        isFlipped={isFlipped}
+        setIsFlipped={toggleIsFlipped}
+      />
+
+      <DisplayQRCode
+        urlQrCode={urlQrCode}
+        isFlipped={isFlipped}
+        setIsFlipped={toggleIsFlipped}
+      />
     </main>
   );
 };

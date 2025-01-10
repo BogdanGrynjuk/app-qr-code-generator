@@ -1,5 +1,6 @@
 .main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  inset: 0;
+  min-height: 700px;
+  perspective: 150em;
 }

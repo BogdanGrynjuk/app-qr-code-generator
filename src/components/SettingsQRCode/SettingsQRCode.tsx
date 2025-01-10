@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import css from './SettingsQRCode.module.css';
 import { prepareParameters, getQrCode, QRCodeParams } from 'utils/qrCodeUtils';
 
 interface Props {
   setUrlQrCode: (url: string) => void;
+  isFlipped: boolean;
+  setIsFlipped: () => void;
 }
 
-const SettingsQRCode: React.FC<Props> = ({ setUrlQrCode }) => {
+const SettingsQRCode: React.FC<Props> = ({
+  setUrlQrCode,
+  isFlipped,
+  setIsFlipped,
+}) => {
   const [formData, setFormData] = useState<QRCodeParams>({
     data: '',
     fgColor: '#000000',
@@ -27,6 +33,8 @@ const SettingsQRCode: React.FC<Props> = ({ setUrlQrCode }) => {
     }));
   };
 
+  useEffect(() => console.log(formData), [formData]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -41,10 +49,11 @@ const SettingsQRCode: React.FC<Props> = ({ setUrlQrCode }) => {
     } catch (error) {
       console.error(error);
     }
+    setIsFlipped();
   };
 
   return (
-    <section className={css.container}>
+    <section className={`${css.container} ${isFlipped && css['is-flipped']}`}>
       <header className={css.header}>
         <h2 className={css.header__title}>Generate your QR code</h2>
         <h3 className={css['header__sub-title']}>
