@@ -6,16 +6,34 @@
   justify-content: space-between;
   row-gap: 1.5em;
   transform: translate(-50%, -50%) rotateY(180deg);
-  background-color: #020c3659;
+  background-color: #0108244d;
   border-radius: 1em;
   padding: clamp(1em, 2vw, 2em);
   width: clamp(300px, 80%, 600px);
   height: 700px;
   display: flex;
-
   transition: transform 1s ease;
   backface-visibility: hidden;
-  box-shadow: 0px 0px 3em 2em #e945e333;
+  box-shadow: 0px 0px 2em 0.5em #e945e326;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1em;
+    padding: 0.2em;
+    background: linear-gradient(
+      45deg,
+      #522d7a 0%,
+      transparent 30%,
+      transparent 70%,
+      #e945e3 100%
+    );
+    mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+    mask-composite: exclude;
+    z-index: -1;
+  }
 }
 
 .is-flipped {
@@ -81,7 +99,7 @@
   }
 }
 
-.cta {
+/* .cta {
   min-width: 200px;
   align-self: center;
   font-size: clamp(1em, 2vw, 1.25em);
@@ -117,9 +135,7 @@
     top: 0;
     transition-duration: 0.5s;
   }
-  &:not(:disabled) {
-    box-shadow: 0px 0px 0.5em 0.5em #e945e333;
-  }
+
   &:not(:disabled)::before,
   &:not(:disabled)::after {
     width: 100%;
@@ -169,4 +185,115 @@
       transition-duration: 0.5s;
     }
   }
+} */
+
+.cta {
+  align-self: center;
+  position: relative;
+  display: block;
+  min-width: 10em;
+  max-width: 15em;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 2.5em;
+  background-color: transparent;
+  font-size: clamp(1em, 2vw, 1.25em);
+  line-height: 1.5;
+  font-weight: 500;
+  color: #e945e3;
+  cursor: pointer;
+  z-index: 0;
+  transition: color 0.5s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-duration: 1s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.125em solid #e945e3;
+    z-index: -10;
+    border-radius: inherit;
+    opacity: 0;
+    transform: scale3d(0.75, 0.55, 1);
+    transition: transform 0.5s, opacity 0.5s;
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-duration: 1s;
+    backface-visibility: hidden;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -1.6em;
+    background-color: transparent;
+    border-radius: 2.5em;
+    z-index: -11;
+    opacity: 0.6;
+    transform: scale3d(0.8, 0.5, 1);
+    backface-visibility: hidden;
+  }
+
+  &:disabled {
+    outline: none;
+    transition: none;
+    transform: none;
+    color: #eeeeeebf;
+    cursor: not-allowed;
+    transition: color 0.5s;
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  }
+
+  &:not(:disabled)::before {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+
+  &:not(:disabled):hover::after {
+    animation: animation-2 0.5s 0.5s forwards;
+  }
+}
+
+@keyframes animation {
+  60% {
+    transform: scale3d(0.8, 0.8, 1);
+  }
+  85% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes animation-2 {
+  to {
+    opacity: 0;
+    transform: scale3d(1, 1, 1);
+    background-color: #7a43b6;
+  }
+}
+
+container:not(.is-flipped) .cta::before,
+container:not(.is-flipped) .cta::after {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.container.is-flipped .cta:hover {
+  transition: background-color 0.1s 0.5s;
+  color: #eeeeee;
+  background-color: #7a43b6;
+  animation: animation 0.5s forwards;
 }
