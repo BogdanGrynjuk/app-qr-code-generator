@@ -1,7 +1,7 @@
 import React from 'react';
 
 import css from './DisplayQRCode.module.css';
-import { downloadQRCode } from 'utils/qrCodeUtils';
+import { downloadQRCode, QRCodeFormat } from 'utils/qrCodeUtils';
 
 interface Props {
   urlQrCode: string;
@@ -14,7 +14,7 @@ const DisplayQRCode: React.FC<Props> = ({
   isFlipped,
   setIsFlipped,
 }) => {
-  const formats = ['svg', 'gif', 'png', 'eps', 'jpeg'];
+  const formats = Object.values(QRCodeFormat);
 
   return (
     <section className={`${css.container} ${isFlipped && css['is-flipped']}`}>
@@ -24,9 +24,11 @@ const DisplayQRCode: React.FC<Props> = ({
           Scan this image to see it in action
         </h3>
       </header>
-      <div className={css['image-wrapper']}>
-        <img src={urlQrCode} alt="QR Code" />
-      </div>
+      {urlQrCode && (
+        <div className={css['image-wrapper']}>
+          <img src={urlQrCode} alt="QR Code" />
+        </div>
+      )}
       <div className={css['download-section']}>
         <p className={css['download-title']}>Download as</p>
         <ul className={css['download-list']}>

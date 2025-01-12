@@ -7,6 +7,14 @@ export interface QRCodeParams {
   format?: string;
 }
 
+export enum QRCodeFormat {
+  SVG = 'svg',
+  GIF = 'gif',
+  PNG = 'png',
+  EPS = 'eps',
+  JPEG = 'jpeg',
+}
+
 export const prepareParameters = (
   params: QRCodeParams
 ): Record<string, string> => {

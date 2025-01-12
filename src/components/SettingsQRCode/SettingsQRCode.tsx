@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import css from './SettingsQRCode.module.css';
 import { prepareParameters, getQrCode, QRCodeParams } from 'utils/qrCodeUtils';
@@ -22,18 +22,16 @@ const SettingsQRCode: React.FC<Props> = ({
     border: '0',
   });
 
-  const isDisabled = !formData.data;
+  const isDisabled = !formData.data.trim();
   const counter = formData.data.length;
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
-      [name]: value,
+      [name]: value.trim(),
     }));
   };
-
-  useEffect(() => console.log(formData), [formData]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,16 +1,44 @@
+@keyframes animation {
+  60% {
+    transform: scale3d(0.8, 0.8, 1);
+  }
+  85% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes animation-2 {
+  to {
+    opacity: 0;
+    transform: scale3d(1, 1, 1);
+    background-color: #7a43b6;
+  }
+}
+
+@keyframes animation-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   row-gap: 1.5em;
   transform: translate(-50%, -50%) rotateY(180deg);
   background-color: #0108244d;
   border-radius: 1em;
   padding: clamp(1em, 2vw, 2em);
   width: clamp(300px, 80%, 600px);
-  height: 700px;
+  min-height: 600px;
+  max-height: 700px;
   display: flex;
   transition: transform 1s ease;
   backface-visibility: hidden;
@@ -41,6 +69,7 @@
 }
 
 .header {
+  justify-self: flex-start;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,14 +92,24 @@
 }
 
 .image-wrapper {
+  position: relative;
   width: 65%;
   margin: 0 auto;
-  box-shadow: 0px 0px 0.5em 0.5em #e945e333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em;
+  border-radius: 0.5em;
+  transform: scale(0);
+  transition: transform 0.5s, opacity 0.5s;
+  transition-delay: 0.5s;
+  opacity: 0;
+  overflow: hidden;
 
   & > img {
     height: 100%;
-    object-fit: cover;
     width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -78,7 +117,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.5em;
+  gap: 1em;
 
   & > .download-title {
     font-size: clamp(1em, 2vw, 1.25em);
@@ -94,105 +133,67 @@
   }
 
   & .download-btn {
-    display: block;
-    padding: 5px 10px;
-  }
-}
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.75em;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: clamp(0.75em, 2vw, 1em);
+    line-height: -1;
+    font-weight: 500;
+    color: #eeeeee;
+    overflow: hidden;
+    transition: color 0.5s;
+    border: 0.15em solid #7a43b6;
+    border-radius: 1em;
 
-/* .cta {
-  min-width: 200px;
-  align-self: center;
-  font-size: clamp(1em, 2vw, 1.25em);
-  line-height: 1.5;
-  font-weight: 500;
-  color: #e945e3;
-  display: inline-block;
-  position: relative;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-  transition-duration: 1s;
-
-  &::before,
-  &::after {
-    content: '';
-    width: 0;
-    height: 0.125em;
-    position: absolute;
-    transition: all 0.2s linear;
-    background-color: #e945e3;
-  }
-
-  &::after {
-    right: 0;
-    bottom: 0;
-    transition-duration: 0.5s;
-  }
-
-  &::before {
-    left: 0;
-    top: 0;
-    transition-duration: 0.5s;
-  }
-
-  &:not(:disabled)::before,
-  &:not(:disabled)::after {
-    width: 100%;
-  }
-
-  &:not(:disabled) > span::before,
-  &:not(:disabled) > span::after {
-    height: 100%;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:disabled {
-    outline: none;
-    transition: none;
-    transform: none;
-    color: #eeeeeebf;
-    cursor: not-allowed;
-    transition: color 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
-  }
-
-  & > span {
-    display: block;
-    padding: 1.25em 1.875em;
+    &:focus {
+      outline: none;
+    }
 
     &::before,
     &::after {
       content: '';
-      width: 0.125em;
-      height: 0;
       position: absolute;
-      transition: all 0.2s linear;
-      background-color: #e945e3;
+      height: 100%;
+      width: 100%;
+      bottom: 100%;
+      left: 0;
+      z-index: -1;
+      transition: transform 0.5s;
+      transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
     }
 
     &::before {
-      left: 0;
-      top: 0;
-      transition-duration: 0.5s;
+      background: #7a43b6;
     }
 
     &::after {
-      right: 0;
-      bottom: 0;
-      transition-duration: 0.5s;
+      background: #522d7a;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      transform: translate3d(0, 100%, 0);
+    }
+    &:hover::after {
+      transition-delay: 0.175s;
     }
   }
-} */
+}
 
 .cta {
   align-self: center;
   position: relative;
   display: block;
-  min-width: 10em;
-  max-width: 15em;
+  width: clamp(14em, 50%, 17em);
   padding: 1em 2em;
   border: none;
   border-radius: 2.5em;
@@ -200,7 +201,7 @@
   font-size: clamp(1em, 2vw, 1.25em);
   line-height: 1.5;
   font-weight: 500;
-  color: #e945e3;
+  color: #eeeeee;
   cursor: pointer;
   z-index: 0;
   transition: color 0.5s;
@@ -216,7 +217,7 @@
     position: absolute;
     inset: 0;
     border: 0.125em solid #e945e3;
-    z-index: -10;
+    z-index: -1;
     border-radius: inherit;
     opacity: 0;
     transform: scale3d(0.75, 0.55, 1);
@@ -229,11 +230,11 @@
   &::after {
     content: '';
     position: absolute;
-    inset: -1.6em;
+    inset: -1em;
     background-color: transparent;
     border-radius: 2.5em;
-    z-index: -11;
-    opacity: 0.6;
+    z-index: -2;
+    opacity: 1;
     transform: scale3d(0.8, 0.5, 1);
     backface-visibility: hidden;
   }
@@ -258,28 +259,8 @@
   }
 }
 
-@keyframes animation {
-  60% {
-    transform: scale3d(0.8, 0.8, 1);
-  }
-  85% {
-    transform: scale3d(1.1, 1.1, 1);
-  }
-  100% {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-@keyframes animation-2 {
-  to {
-    opacity: 0;
-    transform: scale3d(1, 1, 1);
-    background-color: #7a43b6;
-  }
-}
-
-container:not(.is-flipped) .cta::before,
-container:not(.is-flipped) .cta::after {
+.container:not(.is-flipped) .cta::before,
+.container:not(.is-flipped) .cta::after {
   width: 1px;
   height: 1px;
   margin: -1px;
@@ -291,7 +272,39 @@ container:not(.is-flipped) .cta::after {
   overflow: hidden;
 }
 
-.container.is-flipped .cta:hover {
+.container.is-flipped .image-wrapper {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.container.is-flipped .image-wrapper::before,
+.container.is-flipped .image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -5em;
+  z-index: -1;
+}
+
+.container.is-flipped .image-wrapper::before {
+  background-image: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    #e945e3
+  );
+  animation: animation-rotate 5s infinite linear;
+}
+.container.is-flipped .image-wrapper::after {
+  background-image: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    #522d7a
+  );
+  animation: animation-rotate 5s -2.5s infinite linear;
+}
+
+.container.is-flipped .cta:not(:disabled):hover {
   transition: background-color 0.1s 0.5s;
   color: #eeeeee;
   background-color: #7a43b6;
