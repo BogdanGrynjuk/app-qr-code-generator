@@ -6,7 +6,7 @@ to generate custom QR codes with various formats and options.
 ## Live Preview
 
 Check out the live version of the app:
-[QR Code Generator](https://your-deployed-link.com)
+[QR Code Generator]([https://your-deployed-link.com](https://bogdangrynjuk.github.io/app-qr-code-generator/))
 
 ## Features
 
