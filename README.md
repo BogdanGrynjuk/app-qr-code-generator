@@ -1,7 +1,5 @@
 # QR Code Generator
 
-# QR Code Generator
-
 Welcome to the repository for the QR Code Generator app. This project allows you
 to generate custom QR codes with various formats and options.
 
